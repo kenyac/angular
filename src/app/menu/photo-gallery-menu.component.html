@@ -1,0 +1,21 @@
+<div class="row pointer" (mouseenter)="hover()" (mouseleave)="unhover()" (click)="divClick()">
+    <div class="col-sm-4">
+        <div class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/assets/images/fushimi-inari.jpg" class="d-block w-100">
+              </div>
+              <div class="carousel-item">
+                <img src="/assets/images/stonehenge.jpg" class="d-block w-100">
+              </div>
+              <div class="carousel-item">
+                <img src="/assets/images/spray-paint.jpg" class="d-block w-100">
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="col-sm-8 text-start">
+        <h2>{{projectTitle}}</h2>
+        <p>{{projectDescription}}</p>
+    </div>
+</div>
