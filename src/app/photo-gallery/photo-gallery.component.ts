@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import * as d3 from 'd3';
-import { geoMercator } from 'd3-geo';
+import { geoMercator, GeoPath } from 'd3-geo';
 import { geoPath } from 'd3-geo';
 import { MapService } from './photo-map.service';
 
@@ -11,12 +11,13 @@ import { MapService } from './photo-map.service';
   providers: [MapService]
 })
 export class PhotoGalleryComponent implements OnInit {
-
-  constructor() {
+  
+  constructor(private mapService: MapService) {
     this.getScreenSize();
   }
   scrHeight:any;
   scrWidth:any;
+  countries: any;
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(_event?: undefined) {
@@ -26,17 +27,27 @@ export class PhotoGalleryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let projection: d3.GeoProjection = geoMercator();
-    let svg = d3.select('.map-container').append('svg')
-      .attr('width', this.scrWidth - 250)
-      .attr('height', this.scrHeight);
+    this.mapService.getMap().subscribe({
+      next: data => {
 
-    const path = d3.geoPath().projection(projection);
-    
-    d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
-    
-    .then(data => {
-      console.log(data.feature);
-  })};
+        this.countries = data;
+        let projection: d3.GeoProjection = geoMercator().fitWidth(this.scrWidth, this.countries);
+        let svg = d3.select('.map-container').append('svg')
+          .attr('width', this.scrWidth - 250)
+          .attr('height', this.scrHeight);
 
+        const path = d3.geoPath().projection(projection);
+
+        svg.append("g")
+            .selectAll("path")
+            .data(this.countries.features)
+            .enter().append("path")
+                .attr("fill", "#69b3a2")
+                .attr("d", <GeoPath<any,any>>path)
+                .style("stroke", "#fff")
+      }
+    });
+
+    
+  }
 }
