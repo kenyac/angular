@@ -31,8 +31,11 @@
     "@angular/cli": "~12.2.2",
     "@angular/compiler-cli": "~12.2.0",
     "@types/d3": "^5.16.4",
+    "@types/geojson": "^7946.0.8",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
+    "@types/topojson": "^3.2.3",
+    "@types/topojson-client": "^3.1.0",
     "d3": "^5.16.0",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
@@ -40,6 +43,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "topojson-client": "^3.1.0",
     "typescript": "~4.3.5"
   }
 }

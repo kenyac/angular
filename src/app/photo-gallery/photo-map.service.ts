@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class MapService {
-    private mapUrl = 'https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson';
+    private mapUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
     constructor(private http: HttpClient){
 
     }
